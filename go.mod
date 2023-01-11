@@ -1,4 +1,4 @@
-module github.com/ysicing/go-zentao
+module github.com/yjbdsky/go-zentao
 
 go 1.19
 
