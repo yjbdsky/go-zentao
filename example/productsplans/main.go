@@ -20,7 +20,7 @@ import (
 	"log"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/ysicing/go-zentao"
+	"github.com/yjbdsky/go-zentao"
 )
 
 func main() {
