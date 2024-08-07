@@ -66,22 +66,22 @@ func NewClient(token string, options ...ClientOptionFunc) (*Client, error) {
 	return client, nil
 }
 
-func NewBasicAuthClient(username, password string, options ...ClientOptionFunc) (*Client, error) {
+func NewBasicAuthClient(username, password string, options ...ClientOptionFunc) (*Client, *req.Response, error) {
 	client, err := newClient(options...)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	client.username = username
 	client.password = password
-	accesstoken, _, err := client.Token.GetAccessToken()
+	accesstoken, resp, err := client.Token.GetAccessToken()
 	if err != nil {
-		return nil, err
+		return nil, resp, err
 	}
 	if accesstoken != nil {
 		client.token = accesstoken.Token
-		return client, nil
+		return client, resp, nil
 	}
-	return nil, fmt.Errorf("token not valid")
+	return nil, resp, fmt.Errorf("token not valid")
 }
 
 func newClient(options ...ClientOptionFunc) (*Client, error) {

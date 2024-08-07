@@ -52,6 +52,7 @@ type BugMeta struct {
 
 type BugBody struct {
 	BugMeta
+	Name           string        `json:"name"`
 	ID             int           `json:"id"`
 	Project        int           `json:"project"`
 	Product        int           `json:"product"`
@@ -118,10 +119,11 @@ type BugGetMsg struct {
 	Files              []interface{} `json:"files"`
 }
 
-func (s *BugsService) ListByProducts(id int64) (*ListProductsBugsMsg, *req.Response, error) {
+func (s *BugsService) ListByProducts(id int64, params map[string]string) (*ListProductsBugsMsg, *req.Response, error) {
 	var et ListProductsBugsMsg
 	resp, err := s.client.client.R().
 		SetHeader("Token", s.client.token).
+		SetQueryParams(params).
 		SetResult(&et).
 		Get(s.client.RequestURL(fmt.Sprintf("/products/%d/bugs", id)))
 	return &et, resp, err

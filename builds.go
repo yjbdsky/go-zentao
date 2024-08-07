@@ -45,24 +45,31 @@ type BuildsCreateMeta struct {
 }
 
 type BuildsBody struct {
-	ID            int           `json:"id"`
-	Project       int           `json:"project"`
-	Product       int           `json:"product"`
-	Branch        int           `json:"branch"`
-	Execution     int           `json:"execution"`
-	Name          string        `json:"name"`
-	Scmpath       string        `json:"scmPath"`
-	Filepath      string        `json:"filePath"`
-	Date          string        `json:"date"`
-	Stories       []StoriesBody `json:"stories"`
-	Bugs          []BugBody     `json:"bugs"`
-	Builder       string        `json:"builder"`
-	Desc          string        `json:"desc"`
-	Deleted       string        `json:"deleted"`
-	Executionname string        `json:"executionName"`
-	Productname   string        `json:"productName"`
-	Executionid   int           `json:"executionID,omitempty"`
-	Branchname    string        `json:"branchName,omitempty"`
+	ID        int    `json:"id"`
+	Project   int    `json:"project"`
+	Product   int    `json:"product"`
+	Branch    int    `json:"branch"`
+	Execution int    `json:"execution"`
+	Name      string `json:"name"`
+	Scmpath   string `json:"scmPath"`
+	Filepath  string `json:"filePath"`
+	Date      string `json:"date"`
+	//Stories       []StoriesBody `json:"stories"`
+	Stories       []int     `json:"stories"`
+	Bugs          []BugBody `json:"bugs"`
+	Builder       Builder   `json:"builder"`
+	Desc          string    `json:"desc"`
+	Deleted       bool      `json:"deleted"`
+	Executionname string    `json:"executionName"`
+	Productname   string    `json:"productName"`
+	Executionid   int       `json:"executionID,omitempty"`
+	Branchname    string    `json:"branchName,omitempty"`
+}
+type Builder struct {
+	Id       int    `json:"id"`
+	Account  string `json:"account"`
+	Avatar   string `json:"avatar"`
+	Realname string `json:"realname"`
 }
 
 type BuildsCreateMsg struct {
